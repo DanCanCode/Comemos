@@ -3,6 +3,7 @@ import axios from "axios";
 // ACTION TYPES
 const ADD_USER = "ADD_USER";
 const SET_USERS = "SET_USERS";
+const SET_SINGLE_USER = "SET_SINGLE_USER";
 const UPDATE_USER = "UPDATE_USER";
 const DELETE_USER = "DELETE_USER";
 
@@ -11,6 +12,13 @@ const setUsers = (users) => {
   return {
     type: SET_USERS,
     users,
+  };
+};
+
+const setSingleUser = (user) => {
+  return {
+    type: SET_SINGLE_USER,
+    user,
   };
 };
 
@@ -47,6 +55,17 @@ export const fetchUsers = () => {
   };
 };
 
+export const fetchSingleUser = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`/api/users/${id}`);
+      dispatch(setSingleUser(data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const createUser = (user) => {
   return async (dispatch) => {
     try {
@@ -76,6 +95,8 @@ export default function usersReducer(state = [], action) {
   switch (action.type) {
     case SET_USERS:
       return action.users;
+    case SET_SINGLE_USER:
+      return action.user;
     case ADD_USER:
       return [...state, action.user];
     case UPDATE_USER:

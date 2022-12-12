@@ -2,17 +2,21 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Sidebar from "./Sidebar";
 import { FaSearch } from "react-icons/fa";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import jwt from "jsonwebtoken";
 
 const Explore = () => {
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
   //   useEffect(() => {
   //     const token = localStorage.getItem("token");
   //     if (!token) {
   //       navigate("/");
   //     }
   //   }, []);
+
+  const handleClick = (id) => {
+    navigate(`/posts/${id}`);
+  };
 
   const posts = useSelector((state) => state.posts);
   return (
@@ -55,11 +59,12 @@ const Explore = () => {
                 return (
                   <div
                     key={post._id}
-                    className="border rounded-lg overflow-hidden shadow-md hover:scale-90 hover:duration-300 transition duration-300 ease-in-out cursor-pointer"
+                    className="border rounded-lg overflow-hidden shadow-md hover:scale-90 hover:duration-300 transition duration-300 ease-in-out"
                   >
                     <div className="w-96 h-96 overflow-hidden">
                       <img
-                        className="object-cover object-center w-full h-full"
+                        onClick={() => handleClick(post._id)}
+                        className="object-cover object-center w-full h-full cursor-pointer"
                         src={post.image}
                         alt={post.title}
                       />

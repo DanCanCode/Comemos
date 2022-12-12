@@ -7,7 +7,7 @@ import Welcome from "./Welcome/Welcome";
 import UserForm from "./Welcome/UserForm";
 import Explore from "./Explore";
 //import Posts from "./Posts/Posts";
-//import SinglePost from "./Posts/SinglePost";
+import SinglePost from "./Posts/SinglePost";
 //import Profile from "./Profile";
 //import NotFound from "./NotFound";
 
@@ -25,10 +25,11 @@ const App = () => {
         <Route exact path="/signup" element={<UserForm />} />
         <Route exact path="/login" element={<UserForm />} />
         <Route exact path="/explore" element={<Explore />} />
+        <Route exact path="/posts/:id" element={<SinglePost />} />
 
         {/*
         <Route exact path="/posts" element={<Posts />} />
-        <Route exact path="/posts/:id" element={<SinglePost />} />
+        <Route exact path="/users" element={<Users />} />
         <Route exact path="/profile" element={<Profile />} />
 
         <Route path="*" element={<NotFound />} /> */}

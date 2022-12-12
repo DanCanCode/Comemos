@@ -1,12 +1,12 @@
 import axios from "axios";
 
 // ACTION TYPE
-const SET_SINGLE_USER = "SET_SINGLE_USER";
+const SET_CURRENT_USER = "SET_CURRENT_USER";
 
 // ACTION CREATORS
-const setSingleUser = (user) => {
+const setCurrentUser = (user) => {
   return {
-    type: SET_SINGLE_USER,
+    type: SET_CURRENT_USER,
     user,
   };
 };
@@ -16,7 +16,7 @@ export const loginUser = (user) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post(`/api/users/login`, user);
-      dispatch(setSingleUser(data));
+      dispatch(setCurrentUser(data));
     } catch (error) {
       console.log(error);
     }
@@ -26,7 +26,7 @@ export const loginUser = (user) => {
 // REDUCER
 export default function currentUserReducer(state = {}, action) {
   switch (action.type) {
-    case SET_SINGLE_USER:
+    case SET_CURRENT_USER:
       return action.user;
     default:
       return state;

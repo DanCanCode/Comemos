@@ -19,7 +19,11 @@ const Sidebar = () => {
   return (
     <div className="overflow-hidden fixed w-[325px] h-screen bg-[#f0f0f0] flex flex-col gap-8 z-50">
       <header className="flex gap-3 justify-start items-center mt-4 ml-4">
-        <img className="w-10" src={"public/images/logo.png"} alt="comemos" />
+        <img
+          className="w-10"
+          src={"../../public/images/logo.png"}
+          alt="comemos"
+        />
         <h1 className="text-2xl">comemos</h1>
       </header>
 
