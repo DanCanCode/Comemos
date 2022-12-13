@@ -15,6 +15,7 @@ app.use(cors());
 // Include our routes!
 app.use("/api/users", require("./routes/users"));
 app.use("/api/posts", require("./routes/posts"));
+app.use("/api/recipes", require("./routes/recipes"));
 
 app.use(express.static("./"));
 
