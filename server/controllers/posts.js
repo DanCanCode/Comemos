@@ -2,19 +2,24 @@ const Post = require("../models/Post");
 
 const getPosts = async (req, res, next) => {
   try {
-    const posts = await Post.find();
+    const posts = await Post.find().populate({
+      path: "creator",
+      select: "profilePic",
+    });
     res.status(200).json(posts);
   } catch (error) {
     next(error);
   }
 };
 const getSinglePost = async (req, res, next) => {
-  try {
-    const singlePost = await Post.findOne({ _id: req.params.id });
-    res.status(200).json(singlePost);
-  } catch (error) {
-    next(error);
-  }
+  const singlePost = await Post.findOne({ _id: req.params.id })
+    .populate({ path: "creator", select: "username profilePic" })
+    .then(function (post) {
+      res.status(200).json(post);
+    })
+    .catch((error) => {
+      next(error);
+    });
 };
 
 const updatePost = async (req, res, next) => {

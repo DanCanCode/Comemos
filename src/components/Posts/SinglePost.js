@@ -12,9 +12,6 @@ const SinglePost = () => {
 
   useEffect(() => {
     dispatch(fetchPost(postId));
-    // const singlePost = useSelector((state) => state.singlePost);
-    console.log(singlePost);
-    // dispatch(setSingleUser(singlePost.creator));
   }, []);
 
   const singlePost = useSelector((state) => state.singlePost);

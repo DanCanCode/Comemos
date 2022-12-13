@@ -13,7 +13,6 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   const user = useSelector((state) => {
-    console.log(state);
     return state.currentUser;
   });
   return (
