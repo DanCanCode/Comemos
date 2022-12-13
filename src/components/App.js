@@ -6,9 +6,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Welcome from "./Welcome/Welcome";
 import UserForm from "./Welcome/UserForm";
 import Explore from "./Explore";
+import Recipes from "./Recipes";
 //import Posts from "./Posts/Posts";
 import SinglePost from "./Posts/SinglePost";
-//import Profile from "./Profile";
+import SingleUser from "./SingleUser";
 //import NotFound from "./NotFound";
 
 const App = () => {
@@ -26,6 +27,8 @@ const App = () => {
         <Route exact path="/login" element={<UserForm />} />
         <Route exact path="/explore" element={<Explore />} />
         <Route exact path="/posts/:id" element={<SinglePost />} />
+        <Route exact path="/recipes" element={<Recipes />} />
+        <Route exact path="/users/:id" element={<SingleUser />} />
 
         {/*
         <Route exact path="/posts" element={<Posts />} />

@@ -77,7 +77,7 @@ const Sidebar = () => {
 
         <NavLink
           className="font-medium text-xl transition duration-300 ease-in-out hover:translate-x-6 hover:duration-300"
-          to="/profile"
+          to={`/users/${user._id}`}
           style={({ isActive }) => ({
             color: isActive ? "#A4133C" : "#000000",
           })}

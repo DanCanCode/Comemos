@@ -9,6 +9,14 @@ const getUsers = async (req, res, next) => {
     next(error);
   }
 };
+
+const getSingleUser = async (req, res, next) => {
+  try {
+    const singleUser = await User.findOne({ _id: req.params.id });
+    res.status(200).json(singleUser);
+  } catch (error) {}
+};
+
 const loginUser = async (req, res, next) => {
   try {
     const user = await User.findOne({
@@ -49,6 +57,7 @@ const createUser = async (req, res, next) => {
 
 module.exports = {
   getUsers,
+  getSingleUser,
   loginUser,
   updateUser,
   createUser,
