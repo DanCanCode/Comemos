@@ -4,7 +4,7 @@ const {
   getSingleRecipe,
   updateRecipe,
   createRecipe,
-} = require("../controllers/recipe");
+} = require("../controllers/recipes");
 
 router.get("/", getRecipes);
 

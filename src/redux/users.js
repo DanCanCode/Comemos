@@ -1,7 +1,6 @@
 import axios from "axios";
 
 // ACTION TYPES
-const ADD_USER = "ADD_USER";
 const SET_USERS = "SET_USERS";
 const UPDATE_USER = "UPDATE_USER";
 const DELETE_USER = "DELETE_USER";
@@ -11,13 +10,6 @@ const setUsers = (users) => {
   return {
     type: SET_USERS,
     users,
-  };
-};
-
-const addUser = (user) => {
-  return {
-    type: ADD_USER,
-    user,
   };
 };
 
@@ -47,15 +39,6 @@ export const fetchUsers = () => {
   };
 };
 
-export const createUser = (user) => {
-  return async (dispatch) => {
-    try {
-      const { data } = await axios.post("/api/users/signup", user);
-      dispatch(addUser(data));
-    } catch (error) {}
-  };
-};
-
 export const updatedUser = (user) => {
   return async (dispatch) => {
     const { data } = await axios.put(`/api/users/${user._id}`, user);
@@ -76,8 +59,6 @@ export default function usersReducer(state = [], action) {
   switch (action.type) {
     case SET_USERS:
       return action.users;
-    case ADD_USER:
-      return [...state, action.user];
     case UPDATE_USER:
       return state.map((user) =>
         user.id === action.user.id ? action.user : user

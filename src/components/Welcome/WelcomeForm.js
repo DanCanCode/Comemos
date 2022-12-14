@@ -3,8 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import ImageBackground from "./ImageBackground";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { createUser } from "../../redux/users";
-import { loginUser } from "../../redux/currentUser";
+import { loginUser, createUser } from "../../redux/currentUser";
 
 const UserForm = () => {
   const [userData, setUserData] = useState({

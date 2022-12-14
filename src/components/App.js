@@ -4,7 +4,7 @@ import { fetchPosts } from "../redux/posts";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 //import PrivateRoute from "./PrivateRoute";
 import Welcome from "./Welcome/Welcome";
-import UserForm from "./Welcome/UserForm";
+import WelcomeForm from "./Welcome/WelcomeForm";
 import Explore from "./Explore";
 import Recipes from "./Recipes";
 //import Posts from "./Posts/Posts";
@@ -23,8 +23,8 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Welcome />} />
-        <Route exact path="/signup" element={<UserForm />} />
-        <Route exact path="/login" element={<UserForm />} />
+        <Route exact path="/signup" element={<WelcomeForm />} />
+        <Route exact path="/login" element={<WelcomeForm />} />
         <Route exact path="/explore" element={<Explore />} />
         <Route exact path="/posts/:id" element={<SinglePost />} />
         <Route exact path="/recipes" element={<Recipes />} />

@@ -40,17 +40,17 @@ const Sidebar = () => {
       <div className="flex items-center justify-center divide-black/30 divide-x-[1px]">
         <div className="text-center px-6">
           <p>Posts</p>
-          <p>12</p>
+          <p>{user.posts?.length}</p>
         </div>
 
         <div className="text-center px-6">
           <p>Followers</p>
-          <p>483</p>
+          <p>{user.followers?.length}</p>
         </div>
 
         <div className="text-center px-6">
           <p>Following</p>
-          <p>30</p>
+          <p>{user.following?.length}</p>
         </div>
       </div>
 
@@ -62,7 +62,8 @@ const Sidebar = () => {
             color: isActive ? "#A4133C" : "#000000",
           })}
         >
-          <FaCompass className="inline" /> Explore
+          <FaCompass className="inline mr-3" />
+          Explore
         </NavLink>
 
         <NavLink
@@ -72,7 +73,8 @@ const Sidebar = () => {
             color: isActive ? "#A4133C" : "#000000",
           })}
         >
-          <FaUtensils className="inline" /> Recipes
+          <FaUtensils className="inline mr-3" />
+          Recipes
         </NavLink>
 
         <NavLink
@@ -82,7 +84,8 @@ const Sidebar = () => {
             color: isActive ? "#A4133C" : "#000000",
           })}
         >
-          <FaUser className="inline" /> Profile
+          <FaUser className="inline mr-3" />
+          Profile
         </NavLink>
 
         <NavLink
@@ -92,7 +95,8 @@ const Sidebar = () => {
             color: isActive ? "#A4133C" : "#000000",
           })}
         >
-          <FaCog className="inline" /> Settings
+          <FaCog className="inline mr-3" />
+          Settings
         </NavLink>
 
         <button
@@ -101,7 +105,8 @@ const Sidebar = () => {
             navigate("/login");
           }}
         >
-          <FaSignOutAlt className="inline" /> Logout
+          <FaSignOutAlt className="inline mr-3" />
+          Logout
         </button>
       </section>
     </div>
