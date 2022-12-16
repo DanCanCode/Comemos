@@ -12,7 +12,11 @@ const getUsers = async (req, res, next) => {
 
 const getSingleUser = async (req, res, next) => {
   try {
-    const singleUser = await User.findOne({ _id: req.params.id });
+    const singleUser = await User.findOne({ _id: req.params.id })
+      .populate({ path: "posts", select: "title tags image" })
+      .then(function (post) {
+        res.status(200).json(post);
+      });
     res.status(200).json(singleUser);
   } catch (error) {}
 };
@@ -32,8 +36,8 @@ const loginUser = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
   try {
-    const singleUser = await User.findByIdAndUpdate(req.params.id, req.body);
-    res.json(singleUser);
+    // const singleUser = await User.findByIdAndUpdate(req.body._id, req.body);
+    // res.json(singleUser);
   } catch (error) {
     next(error);
   }

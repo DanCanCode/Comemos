@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Welcome from "./Welcome/Welcome";
 import WelcomeForm from "./Welcome/WelcomeForm";
 import Explore from "./Explore";
-import Recipes from "./Recipes";
+import Recipes from "./Recipes/Recipes";
 //import Posts from "./Posts/Posts";
 import SinglePost from "./Posts/SinglePost";
 import SingleUser from "./SingleUser";

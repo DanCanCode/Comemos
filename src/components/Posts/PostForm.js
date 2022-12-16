@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createPost } from "../../redux/posts";
 import FileBase from "react-file-base64";
+import { updatedUser } from "../../redux/users";
 
 const PostForm = () => {
+  const currentUser = useSelector((state) => state.currentUser);
   const [postData, setPostData] = useState({
     title: "",
     description: "",
     tags: [],
-    creator: "",
+    creator: currentUser._id,
     image: "",
   });
   const dispatch = useDispatch();
@@ -16,40 +18,22 @@ const PostForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(createPost(postData));
+    dispatch(updatedUser(currentUser));
     setPostData({
+      ...postData,
       title: "",
       description: "",
       tags: "",
-      creator: "",
       image: "",
     });
   };
+
+  console.log(postData);
 
   return (
     <main>
       <section id="FORM" className="container mx-auto max-w-[400px]">
         <form id="form" onSubmit={handleSubmit}>
-          <div className="mb-6">
-            <label
-              htmlFor="creator"
-              className="block mb-2 text-sm text-black/40"
-            >
-              Creator
-            </label>
-            <input
-              type="text"
-              name="creator"
-              id="creator"
-              placeholder="John Doe"
-              value={postData.creator}
-              onChange={(e) =>
-                setPostData({ ...postData, creator: e.target.value })
-              }
-              required
-              className="w-full px-3 py-2 placeholder-black/30 border border-black/20 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-300"
-            />
-          </div>
-
           <div className="mb-6">
             <label htmlFor="title" className="block mb-2 text-sm text-black/40">
               Title
@@ -89,6 +73,7 @@ const PostForm = () => {
             <label htmlFor="image" className="block mb-2 text-sm text-black/40">
               Image
             </label>
+
             <FileBase
               type="file"
               multiple={false}

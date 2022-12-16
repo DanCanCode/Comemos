@@ -70,14 +70,16 @@ const Explore = () => {
                       />
                     </div>
 
-                    <div className="overflow-hidden w-12 rounded-full">
-                      <img
-                        className="object-cover object-center"
-                        src={post.creator.profilePic}
-                        alt={post.creator.id}
-                      />
+                    <div className="m-4 flex justify-between items-center">
+                      <div className="overflow-hidden w-12 h-12 rounded-full">
+                        <img
+                          className="object-cover object-center"
+                          src={post.creator.profilePic}
+                          alt={post.creator.id}
+                        />
+                      </div>
+                      <p className="text-lg font-medium">{post.title}</p>
                     </div>
-                    <p className="text-lg font-medium m-4">{post.title}</p>
                   </div>
                 );
               })
