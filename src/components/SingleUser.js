@@ -5,9 +5,11 @@ import { fetchSingleUser } from "../redux/singleUser";
 import { FaPlus } from "react-icons/fa";
 import Sidebar from "./Sidebar";
 import PostForm from "./Posts/PostForm";
+import RecipeForm from "./Recipes/RecipeForm";
 
 const SingleUser = () => {
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
+  const [formType, setFormType] = useState("");
   const userId = useLocation().pathname.replace("/users/", "");
   const dispatch = useDispatch();
 
@@ -31,7 +33,7 @@ const SingleUser = () => {
           <div className="bg-white container p-4 rounded-lg mx-auto max-w-[500px] -translate-y-1/2 -translate-x-1/2 absolute top-1/2 left-1/2">
             <header className="flex items-center justify-between mb-4 mx-auto">
               <h1 className="text-lg font-semibold tracking-wider">
-                Create Post
+                {formType === "POST" ? "Create Post" : "Create Recipe"}
               </h1>
               <div
                 className="CROSS-ICON  cursor-pointer"
@@ -52,7 +54,7 @@ const SingleUser = () => {
               </div>
             </header>
 
-            <PostForm />
+            {formType === "POST" ? <PostForm /> : <RecipeForm />}
           </div>
         </div>
 
@@ -109,13 +111,19 @@ const SingleUser = () => {
             className="w-56 absolute top-[72px] right-7 mx-10 rounded-lg hidden flex flex-col bg-white drop-shadow-md"
           >
             <a
-              onClick={() => setIsPopUpOpen(true)}
+              onClick={() => {
+                setIsPopUpOpen(true);
+                setFormType("POST");
+              }}
               className="px-5 py-3 rounded-lg hover:bg-[#A4133C] hover:text-white border-b border-gray-200 cursor-pointer"
             >
               Post
             </a>
             <a
-              onClick={() => setIsPopUpOpen(true)}
+              onClick={() => {
+                setIsPopUpOpen(true);
+                setFormType("RECIPE");
+              }}
               className="px-5 py-3 rounded-lg hover:bg-[#A4133C] hover:text-white border-b border-gray-200 cursor-pointer"
             >
               Recipe

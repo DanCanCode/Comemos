@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost } from "../../redux/posts";
 import FileBase from "react-file-base64";
-import { updatedUser } from "../../redux/users";
+// import { updatedUser } from "../../redux/users";
 
 const PostForm = () => {
   const currentUser = useSelector((state) => state.currentUser);
@@ -18,7 +18,7 @@ const PostForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(createPost(postData));
-    dispatch(updatedUser(currentUser));
+    // dispatch(updatedUser(currentUser));
     setPostData({
       ...postData,
       title: "",
@@ -85,17 +85,17 @@ const PostForm = () => {
 
           <div className="mb-6">
             <label
-              htmlFor="descriptipn"
+              htmlFor="description"
               className="block mb-2 text-sm text-black/40"
             >
-              Descriptipn
+              Description
             </label>
 
             <textarea
               rows="5"
-              name="descriptipn"
-              id="descriptipn"
-              placeholder="Your Descriptipn"
+              name="description"
+              id="description"
+              placeholder="Your Description"
               value={postData.description}
               onChange={(e) =>
                 setPostData({ ...postData, description: e.target.value })
