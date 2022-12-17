@@ -10,7 +10,7 @@ const DELETE_RECIPE = "DELETE_RECIPE";
 const setRecipes = (recipes) => {
   return {
     type: SET_RECIPES,
-    recipess,
+    recipes,
   };
 };
 

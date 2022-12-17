@@ -27,9 +27,9 @@ const Sidebar = () => {
       </header>
 
       <section className="grid grid-cols-1 gap-3 place-items-center">
-        <div className="overflow-hidden w-24 rounded-full">
+        <div className="overflow-hidden w-24 h-24 rounded-full">
           <img
-            className="object-cover object-center"
+            className="object-cover object-center w-full h-full"
             src={user.profilePic}
             alt={user.username}
           />

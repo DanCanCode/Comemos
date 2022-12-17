@@ -66,6 +66,12 @@ const RecipeForm = () => {
               id="mealType"
               name="mealType"
               defaultValue={"default"}
+              onChange={(e) =>
+                setRecipeData({
+                  ...recipeData,
+                  mealType: e.target.value,
+                })
+              }
               required
               className="w-full px-3 py-2 placeholder-black/30 border border-black/20 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-300"
             >
@@ -108,7 +114,10 @@ const RecipeForm = () => {
               placeholder="3 Eggs, 1 Cup Milk"
               value={recipeData.ingredients}
               onChange={(e) =>
-                setRecipeData({ ...recipeData, ingredients: e.target.value })
+                setRecipeData({
+                  ...recipeData,
+                  ingredients: e.target.value.split(","),
+                })
               }
               className="w-full px-3 py-2 placeholder-black/30 border border-black/20 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-300"
             />

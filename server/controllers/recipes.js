@@ -4,7 +4,7 @@ const getRecipes = async (req, res, next) => {
   try {
     const recipes = await Recipe.find().populate({
       path: "creator",
-      select: "profilePic",
+      select: "username profilePic",
     });
     res.status(200).json(recipes);
   } catch (error) {
