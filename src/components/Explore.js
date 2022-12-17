@@ -78,7 +78,9 @@ const Explore = () => {
                           alt={post.creator.id}
                         />
                       </div>
-                      <p className="text-lg font-medium">{post.title}</p>
+                      <p className="text-lg font-medium max-w-[250px] truncate">
+                        {post.title}
+                      </p>
                     </div>
                   </div>
                 );

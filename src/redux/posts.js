@@ -56,7 +56,8 @@ export const createPost = (post) => {
 
 export const updatedPost = (post) => {
   return async (dispatch) => {
-    const { data } = await axios.put(`/api/posts/${post._id}`, post);
+    const { id, postData } = post;
+    const { data } = await axios.put(`/api/posts/${id}`, postData);
     console.log(data);
     dispatch(updatePost(data));
   };

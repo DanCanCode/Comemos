@@ -24,9 +24,7 @@ const getSinglePost = async (req, res, next) => {
 
 const updatePost = async (req, res, next) => {
   try {
-    const singlePost = await Post.findByIdAndUpdate(req.params.id, {
-      image: req.body.image,
-    });
+    const singlePost = await Post.findByIdAndUpdate(req.params.id, req.body);
     res.json(singlePost);
   } catch (error) {
     next(error);

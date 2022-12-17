@@ -165,7 +165,7 @@ const SingleUser = () => {
                       console.log("signle post page");
                     }}
                     key={post._id}
-                    className="w-56 h-56 overflow-hidden rounded-md cursor-pointer"
+                    className="w-56 h-56 overflow-hidden rounded-md cursor-pointer hover:scale-90 hover:duration-300 transition duration-300 ease-in-out"
                   >
                     <img
                       className="object-cover object-center w-full h-full"
