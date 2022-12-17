@@ -36,8 +36,8 @@ const loginUser = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
   try {
-    // const singleUser = await User.findByIdAndUpdate(req.body._id, req.body);
-    // res.json(singleUser);
+    const singleUser = await User.findByIdAndUpdate(req.params.id, req.body);
+    res.json(singleUser);
   } catch (error) {
     next(error);
   }

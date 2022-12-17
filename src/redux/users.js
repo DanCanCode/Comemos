@@ -41,7 +41,8 @@ export const fetchUsers = () => {
 
 export const updatedUser = (user) => {
   return async (dispatch) => {
-    const { data } = await axios.put(`/api/users/${user._id}`, user);
+    const { id, userData } = user;
+    const { data } = await axios.put(`/api/users/${id}`, userData);
     console.log(data);
     dispatch(updateUser(data));
   };

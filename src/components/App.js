@@ -10,6 +10,7 @@ import Recipes from "./Recipes/Recipes";
 //import Posts from "./Posts/Posts";
 import SinglePost from "./Posts/SinglePost";
 import SingleUser from "./SingleUser";
+import Settings from "./Settings";
 //import NotFound from "./NotFound";
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
         <Route exact path="/posts/:id" element={<SinglePost />} />
         <Route exact path="/recipes" element={<Recipes />} />
         <Route exact path="/users/:id" element={<SingleUser />} />
+        <Route exact path="/settings" element={<Settings />} />
 
         {/*
         <Route exact path="/posts" element={<Posts />} />

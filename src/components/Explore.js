@@ -25,7 +25,7 @@ const Explore = () => {
 
       <main className="relative top-0 left-[325px] w-[calc(100%-325px)] h-screen ">
         <header className="flex justify-between items-center mx-10 pt-4">
-          <h1 className="text-3xl font-semibold">Welcome Back!</h1>
+          <h1 className="text-3xl font-semibold">Explore</h1>
 
           <div className="">
             <FaSearch className="absolute text-black/20 top-7 right-60" />
@@ -71,11 +71,16 @@ const Explore = () => {
                     </div>
 
                     <div className="m-4 flex justify-between items-center">
-                      <div className="overflow-hidden w-12 h-12 rounded-full">
+                      <div
+                        onClick={() => {
+                          navigate(`/users/${post.creator._id}`);
+                        }}
+                        className="overflow-hidden w-12 h-12 rounded-full cursor-pointer"
+                      >
                         <img
-                          className="object-cover object-center"
+                          className="object-cover object-center w-full h-full"
                           src={post.creator.profilePic}
-                          alt={post.creator.id}
+                          alt={post.creator._id}
                         />
                       </div>
                       <p className="text-lg font-medium max-w-[250px] truncate">
