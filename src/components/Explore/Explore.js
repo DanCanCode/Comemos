@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import Sidebar from "./Sidebar";
+import Sidebar from "../Sidebar";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 // import jwt from "jsonwebtoken";

@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { fetchSingleUser } from "../redux/singleUser";
 import { FaPlus } from "react-icons/fa";
 import Sidebar from "./Sidebar";
-import PostForm from "./Posts/PostForm";
+import PostForm from "./Explore/PostForm";
 import RecipeForm from "./Recipes/RecipeForm";
 
 const SingleUser = () => {
