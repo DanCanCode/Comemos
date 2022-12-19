@@ -50,61 +50,73 @@ const Recipes = () => {
                   <th>Price</th>
                 </tr>
               </thead> */}
-          <div className="flex justify-between items-center border-b mb-6 mx-6">
-            <h2 className="pl-2 font-bold">Title</h2>
-            <h2 className="font-bold">Meal Type</h2>
-            <h2 className="pr-2 font-bold">Created By</h2>
-          </div>
+          <table className="table-auto w-full">
+            <thead className="">
+              <tr className="text-left">
+                <th className="border-b font-medium p-2  pt-0 pb-3">Title</th>
+                <th className="border-b font-medium p-2  pt-0 pb-3">
+                  Meal Type
+                </th>
+                <th className="border-b font-medium p-2  pt-0 pb-3">
+                  Created By
+                </th>
+              </tr>
+            </thead>
 
-          <div className="flex flex-col gap-2 justify-center mx-6">
-            {recipes
-              ?.map((recipe, index) => {
-                return (
-                  <div
-                    key={recipe._id}
-                    className={`flex justify-between items-center ${
-                      index % 2 ? "bg-black/10" : ""
-                    } py-4 px-2`}
-                  >
-                    <div className="flex items-center gap-4">
-                      <div
-                        onClick={() => {
-                          navigate(`/users/${recipe.creator._id}`);
-                        }}
-                        className="w-16 h-16 overflow-hidden rounded-full cursor-pointer"
-                      >
-                        <img
-                          className="w-full h-full object-cover object-center"
-                          src={recipe.image}
-                          alt={recipe.title}
-                        />
-                      </div>
-                      <p
+            <tbody className="">
+              {recipes
+                ?.map((recipe, index) => {
+                  return (
+                    <tr
+                      key={recipe._id}
+                      className={` ${index % 2 ? "bg-black/10" : ""} text-left`}
+                    >
+                      <td
                         onClick={() => {
                           handleClick(recipe._id);
                         }}
-                        className="text-lg font-semibold cursor-pointer"
+                        className="cursor-pointer p-4 hover:text-blue-500"
                       >
-                        {recipe.title}
-                      </p>
-                    </div>
+                        <div className="flex items-center gap-4">
+                          <div className="w-16 h-16 overflow-hidden rounded-full">
+                            <img
+                              className="w-full h-full object-cover object-center"
+                              src={recipe.image}
+                              alt={recipe.title}
+                            />
+                          </div>
+                          <p className="text-lg font-semibold">
+                            {recipe.title}
+                          </p>
+                        </div>
+                      </td>
 
-                    <div>
-                      <p className="text-lg font-semibold">{recipe.mealType}</p>
-                    </div>
+                      <td className="p-4">
+                        <p className="text-lg font-semibold">
+                          {recipe.mealType}
+                        </p>
+                      </td>
 
-                    <div className="w-12 h-12 overflow-hidden rounded-full cursor-pointer">
-                      <img
-                        className="w-full h-full object-cover object-center"
-                        src={recipe.creator.profilePic}
-                        alt={recipe.creator.username}
-                      />
-                    </div>
-                  </div>
-                );
-              })
-              .reverse()}
-          </div>
+                      <td className="p-4">
+                        <div
+                          onClick={() => {
+                            navigate(`/users/${recipe.creator._id}`);
+                          }}
+                          className="w-12 h-12 overflow-hidden rounded-full cursor-pointer"
+                        >
+                          <img
+                            className="w-full h-full object-cover object-center"
+                            src={recipe.creator.profilePic}
+                            alt={recipe.creator.username}
+                          />
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })
+                .reverse()}
+            </tbody>
+          </table>
         </section>
       </main>
     </div>
