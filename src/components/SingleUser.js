@@ -112,8 +112,8 @@ const SingleUser = () => {
   // };
 
   const handleUser = () => {
-    const currentUser = useSelector((state) => state.currentUser);
-    if (userId == currentUser._id) {
+    const currentUser = useSelector((state) => state.currentUser.user);
+    if (userId == currentUser?._id) {
       return (
         <div id="dropdown-wrapper">
           <button

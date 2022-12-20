@@ -13,7 +13,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   const user = useSelector((state) => {
-    return state.currentUser;
+    return state.currentUser.user;
   });
   return (
     <div className="overflow-hidden fixed w-[325px] h-screen bg-[#f0f0f0] flex flex-col gap-8 z-50">
@@ -30,27 +30,27 @@ const Sidebar = () => {
         <div className="overflow-hidden w-24 h-24 rounded-full">
           <img
             className="object-cover object-center w-full h-full"
-            src={user.profilePic}
-            alt={user.username}
+            src={user?.profilePic}
+            alt={user?.username}
           />
         </div>
-        <h1 className="text-lg font-semibold">{user.username}</h1>
+        <h1 className="text-lg font-semibold">{user?.username}</h1>
       </section>
 
       <div className="flex items-center justify-center divide-black/30 divide-x-[1px]">
         <div className="text-center px-6">
           <p>Posts</p>
-          <p>{user.posts?.length}</p>
+          <p>{user?.posts?.length}</p>
         </div>
 
         <div className="text-center px-6">
           <p>Followers</p>
-          <p>{user.followers?.length}</p>
+          <p>{user?.followers?.length}</p>
         </div>
 
         <div className="text-center px-6">
           <p>Recipes</p>
-          <p>{user.recipes?.length}</p>
+          <p>{user?.recipes?.length}</p>
         </div>
       </div>
 
@@ -79,7 +79,7 @@ const Sidebar = () => {
 
         <NavLink
           className="font-medium text-xl transition duration-300 ease-in-out hover:translate-x-6 hover:duration-300"
-          to={`/users/${user._id}`}
+          to={`/users/${user?._id}`}
           style={({ isActive }) => ({
             color: isActive ? "#A4133C" : "#000000",
           })}

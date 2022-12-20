@@ -5,7 +5,7 @@ import FileBase from "react-file-base64";
 // import { updatedUser } from "../../redux/users";
 
 const PostForm = () => {
-  const currentUser = useSelector((state) => state.currentUser);
+  const currentUser = useSelector((state) => state.currentUser.user);
   const [postData, setPostData] = useState({
     title: "",
     description: "",

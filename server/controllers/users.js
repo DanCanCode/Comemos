@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 
 const getUsers = async (req, res, next) => {
   try {
-    const users = await User.find();
+    const users = await User.find().select("-password");
     res.status(200).json(users);
   } catch (error) {
     next(error);
@@ -16,6 +16,7 @@ const getSingleUser = async (req, res, next) => {
     const singleUser = await User.findOne({ _id: req.params.id })
       .populate({ path: "posts", select: "title tags image" })
       .populate({ path: "recipes", select: "title image mealType" })
+      .select("-password")
       .then(function (post) {
         res.status(200).json(post);
       });
@@ -29,10 +30,13 @@ const loginUser = async (req, res, next) => {
 
     // Check for user
     const user = await User.findOne({ email });
+    // const salt = bcrypt.genSalt(10);
+    // const hashedPassword = await bcrypt.hash(password.toString(), salt);
+    // console.log("update password", hashedPassword);
 
     // Compare input password to hashed password
     if (user && (await bcrypt.compare(password, user.password))) {
-      res.status(200).json({ user, token: generateToken(createdUser._id) });
+      res.status(200).json({ user, token: generateToken(user._id) });
     } else {
       res.status(400);
       throw new Error("Invalid Credentials");
@@ -51,7 +55,7 @@ const updateUser = async (req, res, next) => {
   }
 };
 
-const deleteUser = async () => {
+const deleteUser = async (req, res, next) => {
   try {
     const removedUser = await User.deleteOne({ _id: req.params.id });
     res.json(removedUser);
@@ -72,8 +76,9 @@ const createUser = async (req, res, next) => {
     }
 
     // Hash password
-    const salt = bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    // const salt = await bcrypt.genSalt(10);
+    // console.log(salt);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create user
     const createdUser = await new User({
@@ -90,7 +95,7 @@ const createUser = async (req, res, next) => {
     });
     res
       .status(200)
-      .json({ createdUser, token: generateToken(createdUser._id) });
+      .json({ ...createdUser, token: generateToken(createdUser._id) });
   } catch (error) {
     next(error);
   }

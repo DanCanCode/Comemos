@@ -7,7 +7,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Sidebar from "./Sidebar";
 
 const Settings = () => {
-  const currentUser = useSelector((state) => state.currentUser);
+  const currentUser = useSelector((state) => state.currentUser.user);
   const [userData, setUserData] = useState({
     profilePic: currentUser?.profilePic,
     username: currentUser?.username,
@@ -118,7 +118,7 @@ const Settings = () => {
                   />
                 )}
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   id="password"
                   placeholder="*************"
