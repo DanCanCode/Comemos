@@ -14,6 +14,7 @@ const getSingleUser = async (req, res, next) => {
   try {
     const singleUser = await User.findOne({ _id: req.params.id })
       .populate({ path: "posts", select: "title tags image" })
+      .populate({ path: "recipes", select: "title image mealType" })
       .then(function (post) {
         res.status(200).json(post);
       });

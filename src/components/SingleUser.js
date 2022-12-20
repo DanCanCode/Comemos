@@ -8,13 +8,31 @@ import PostForm from "./Explore/PostForm";
 import RecipeForm from "./Recipes/RecipeForm";
 
 const SingleUser = () => {
+  const [active, setActive] = useState({
+    posts: true,
+    recipes: false,
+  });
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   const [formType, setFormType] = useState("");
   const userId = useLocation().pathname.replace("/users/", "");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchSingleUser(userId));
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("DOMContentLoaded", () => {
+      const tabs = document.querySelectorAll('[role="tab"]');
+      const tabList = document.querySelector('[role="tablist"]');
+      console.log(tabs);
+
+      // Add a click event handler to each tab
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", changeTabs);
+      });
+    });
   }, []);
 
   const toggleMenu = () => {
@@ -83,15 +101,15 @@ const SingleUser = () => {
     );
   };
 
-  window.onclick = function (event) {
-    let dropdownWrapper = document.getElementById("dropdown-wrapper");
-    if (
-      !dropdownWrapper.contains(event.target) &&
-      !menu.classList.contains("hidden")
-    ) {
-      menu.classList.add("hidden");
-    }
-  };
+  // window.onclick = function (event) {
+  //   let dropdownWrapper = document.getElementById("dropdown-wrapper");
+  //   if (
+  //     !dropdownWrapper.contains(event.target) &&
+  //     !menu.classList.contains("hidden")
+  //   ) {
+  //     menu.classList.add("hidden");
+  //   }
+  // };
 
   const handleUser = () => {
     const currentUser = useSelector((state) => state.currentUser);
@@ -140,14 +158,13 @@ const SingleUser = () => {
   };
 
   const singleUser = useSelector((state) => state.singleUser);
-  console.log(singleUser);
   return (
     <div>
       <Sidebar />
       <main className="relative top-0 left-[325px] w-[calc(100%-325px)] h-screen">
         {handleUser()}
 
-        <header className="pt-20 pb-10 mx-20 flex justify-center items-center gap-12  border-b">
+        <header className="pt-20 pb-8 mx-20 flex justify-center items-center gap-12 ">
           <div className="w-28 h-28 rounded-full overflow-hidden">
             <img
               className="object-cover object-center w-full h-full"
@@ -161,44 +178,127 @@ const SingleUser = () => {
 
             <div className="flex items-center justify-center divide-black/30 divide-x-[1px]">
               <div className="text-center pr-6">
-                <p>Posts</p>
-                <p>{singleUser.posts?.length}</p>
-              </div>
-
-              <div className="text-center px-6">
                 <p>Followers</p>
                 <p>{singleUser.followers?.length}</p>
               </div>
 
-              <div className="text-center pl-6">
+              <div className="text-center px-6">
                 <p>Following</p>
                 <p>{singleUser.following?.length}</p>
+              </div>
+
+              <div className="text-center px-6">
+                <p>Posts</p>
+                <p>{singleUser.posts?.length}</p>
+              </div>
+
+              <div className="text-center pl-6">
+                <p>Recipes</p>
+                <p>{singleUser.recipes?.length}</p>
               </div>
             </div>
           </div>
         </header>
 
-        <section className="my-8">
-          <div className="flex flex-wrap gap-3 justify-center items-center mx-10">
-            {singleUser.posts
-              ?.map((post) => {
-                return (
-                  <div
-                    onClick={() => {
-                      console.log("signle post page");
-                    }}
-                    key={post._id}
-                    className="w-56 h-56 overflow-hidden rounded-md cursor-pointer hover:scale-90 hover:duration-300 transition duration-300 ease-in-out"
-                  >
-                    <img
-                      className="object-cover object-center w-full h-full"
-                      src={post.image}
-                      alt={post.title}
-                    />
-                  </div>
-                );
-              })
-              .reverse()}
+        <section className="mx-20">
+          <div className="TABS flex justify-center gap-6 items-center flex-wrap mb-6 font-medium text-center  border-b">
+            <button
+              onClick={() => {
+                setActive({ posts: true, recipes: false });
+              }}
+              className="TAB-LABEL p-2 mb-2 rounded-lg hover:bg-black/10 uppercase"
+            >
+              Posts
+            </button>
+
+            <button
+              onClick={() => {
+                setActive({ posts: false, recipes: true });
+              }}
+              className="TAB-LABEL p-2 mb-2 rounded-lg hover:bg-black/10 uppercase"
+            >
+              Recipes
+            </button>
+          </div>
+
+          <div className={active.posts ? "" : "hidden"}>
+            <div className="flex flex-wrap gap-3 justify-center items-center">
+              {singleUser.posts
+                ?.map((post) => {
+                  return (
+                    <div
+                      onClick={() => {
+                        console.log("signle post page");
+                      }}
+                      key={post._id}
+                      className="w-56 h-56 overflow-hidden rounded-md cursor-pointer hover:scale-90 hover:duration-300 transition duration-300 ease-in-out"
+                    >
+                      <img
+                        className="object-cover object-center w-full h-full"
+                        src={post.image}
+                        alt={post.title}
+                      />
+                    </div>
+                  );
+                })
+                .reverse()}
+            </div>
+          </div>
+
+          <div className={active.recipes ? "" : "hidden"}>
+            <table className="table-auto w-full">
+              <thead className="">
+                <tr className="text-left">
+                  <th className="border-b font-semibold p-2  pt-0 pb-3">
+                    Title
+                  </th>
+                  <th className="border-b font-semibold p-2  pt-0 pb-3">
+                    Meal Type
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {singleUser.recipes
+                  ?.map((recipe, index) => {
+                    return (
+                      <tr
+                        key={recipe._id}
+                        className={` ${
+                          index % 2 ? "bg-black/10" : ""
+                        } text-left`}
+                      >
+                        <td
+                          onClick={() => {
+                            navigate(`/recipes/${recipe._id}`);
+                          }}
+                          className="cursor-pointer p-4 hover:text-blue-500"
+                        >
+                          <div className="flex items-center gap-4">
+                            <div className="w-16 h-16 overflow-hidden rounded-full">
+                              <img
+                                className="w-full h-full object-cover object-center"
+                                src={recipe.image}
+                                alt={recipe.title}
+                              />
+                            </div>
+                            <p className="text-lg font-medium">
+                              {recipe.title}
+                            </p>
+                          </div>
+                        </td>
+
+                        <td className="p-4">
+                          <p className="text-lg font-medium">
+                            {recipe.mealType}
+                          </p>
+                        </td>
+                      </tr>
+                    );
+                  })
+                  .reverse()}
+              </tbody>
+            </table>
           </div>
         </section>
       </main>

@@ -49,8 +49,8 @@ const Sidebar = () => {
         </div>
 
         <div className="text-center px-6">
-          <p>Following</p>
-          <p>{user.following?.length}</p>
+          <p>Recipes</p>
+          <p>{user.recipes?.length}</p>
         </div>
       </div>
 
