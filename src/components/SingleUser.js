@@ -93,12 +93,10 @@ const SingleUser = () => {
     }
   };
 
-  const singleUser = useSelector((state) => state.singleUser);
-  console.log(singleUser);
-  return (
-    <div>
-      <Sidebar />
-      <main className="relative top-0 left-[325px] w-[calc(100%-325px)] h-screen">
+  const handleUser = () => {
+    const currentUser = useSelector((state) => state.currentUser);
+    if (userId == currentUser._id) {
+      return (
         <div id="dropdown-wrapper">
           <button
             onClick={toggleMenu}
@@ -131,6 +129,23 @@ const SingleUser = () => {
           </div>
           {isPopUpOpen && showForm()}
         </div>
+      );
+    } else {
+      return (
+        <button className="bg-[#A4133C] text-white absolute top-5 right-7 mx-10 py-3 px-6 shadow-md rounded-lg border text-right active:scale-90">
+          Follow
+        </button>
+      );
+    }
+  };
+
+  const singleUser = useSelector((state) => state.singleUser);
+  console.log(singleUser);
+  return (
+    <div>
+      <Sidebar />
+      <main className="relative top-0 left-[325px] w-[calc(100%-325px)] h-screen">
+        {handleUser()}
 
         <header className="pt-20 pb-10 mx-20 flex justify-center items-center gap-12  border-b">
           <div className="w-28 h-28 rounded-full overflow-hidden">
