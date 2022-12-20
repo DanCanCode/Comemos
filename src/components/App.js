@@ -34,10 +34,6 @@ const App = () => {
         <Route exact path="/settings" element={<Settings />} />
 
         {/*
-        <Route exact path="/posts" element={<Posts />} />
-        <Route exact path="/users" element={<Users />} />
-        <Route exact path="/profile" element={<Profile />} />
-
         <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </BrowserRouter>

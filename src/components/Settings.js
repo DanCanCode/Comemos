@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updatedUser } from "../redux/users";
+import { useNavigate } from "react-router-dom";
+import { removeUser, updatedUser } from "../redux/users";
 import FileBase from "react-file-base64";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Sidebar from "./Sidebar";
@@ -15,10 +16,17 @@ const Settings = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(updatedUser({ id: currentUser._id, userData }));
+  };
+
+  const handleDelete = (event) => {
+    event.preventDefault();
+    dispatch(removeUser(currentUser._id));
+    navigate("/");
   };
 
   console.log(userData);
@@ -136,6 +144,7 @@ const Settings = () => {
           <h1 className="text-3xl font-semibold my-10">Delete Profile</h1>
           <div className="py-6 flex flex-col items-center">
             <button
+              onClick={handleDelete}
               type="submit"
               className=" w-[350px] px-3 py-4 text-white tracking-wide font-medium rounded-md bg-[#EA0000] hover:bg-[#af0000] active:scale-90 focus:outline-none"
             >
