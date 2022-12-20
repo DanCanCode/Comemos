@@ -20,6 +20,8 @@ const getSingleRecipe = async (req, res, next) => {
     .catch((error) => {
       next(error);
     });
+
+  console.log(singleRecipe);
 };
 
 const updateRecipe = async (req, res, next) => {

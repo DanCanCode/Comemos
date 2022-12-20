@@ -7,6 +7,7 @@ import recipesReducer from "./redux/recipes";
 import currentUserReducer from "./redux/currentUser";
 import singlePostReducer from "./redux/singlePost";
 import singleUserReducer from "./redux/singleUser";
+import singleRecipeReducer from "./redux/singleRecipe";
 
 const reducer = combineReducers({
   posts: postsReducer,
@@ -15,6 +16,7 @@ const reducer = combineReducers({
   currentUser: currentUserReducer,
   singlePost: singlePostReducer,
   singleUser: singleUserReducer,
+  singleRecipe: singleRecipeReducer,
 });
 
 const store = configureStore({ reducer }, applyMiddleware(thunk));

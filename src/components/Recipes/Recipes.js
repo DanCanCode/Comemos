@@ -53,11 +53,11 @@ const Recipes = () => {
           <table className="table-auto w-full">
             <thead className="">
               <tr className="text-left">
-                <th className="border-b font-medium p-2  pt-0 pb-3">Title</th>
-                <th className="border-b font-medium p-2  pt-0 pb-3">
+                <th className="border-b font-semibold p-2  pt-0 pb-3">Title</th>
+                <th className="border-b font-semibold p-2  pt-0 pb-3">
                   Meal Type
                 </th>
-                <th className="border-b font-medium p-2  pt-0 pb-3">
+                <th className="border-b font-semibold p-2  pt-0 pb-3">
                   Created By
                 </th>
               </tr>
@@ -85,16 +85,12 @@ const Recipes = () => {
                               alt={recipe.title}
                             />
                           </div>
-                          <p className="text-lg font-semibold">
-                            {recipe.title}
-                          </p>
+                          <p className="text-lg font-medium">{recipe.title}</p>
                         </div>
                       </td>
 
                       <td className="p-4">
-                        <p className="text-lg font-semibold">
-                          {recipe.mealType}
-                        </p>
+                        <p className="text-lg font-medium">{recipe.mealType}</p>
                       </td>
 
                       <td className="p-4">
