@@ -30,9 +30,6 @@ const loginUser = async (req, res, next) => {
 
     // Check for user
     const user = await User.findOne({ email });
-    // const salt = bcrypt.genSalt(10);
-    // const hashedPassword = await bcrypt.hash(password.toString(), salt);
-    // console.log("update password", hashedPassword);
 
     // Compare input password to hashed password
     if (user && (await bcrypt.compare(password, user.password))) {

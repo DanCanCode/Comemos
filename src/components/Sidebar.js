@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, NavLink } from "react-router-dom";
 import {
   FaCompass,
@@ -8,9 +8,17 @@ import {
   FaSignOutAlt,
   FaUtensils,
 } from "react-icons/fa";
+import { logoutUser } from "../redux/currentUser";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const handleLogout = (event) => {
+    event.preventDefault();
+    dispatch(logoutUser());
+    navigate("/login");
+  };
 
   const user = useSelector((state) => {
     return state.currentUser.user;
@@ -101,9 +109,7 @@ const Sidebar = () => {
 
         <button
           className="font-medium text-xl hover:text-[#A4133C] transition duration-300 ease-in-out hover:translate-x-6 hover:duration-300"
-          onClick={() => {
-            navigate("/login");
-          }}
+          onClick={handleLogout}
         >
           <FaSignOutAlt className="inline mr-3" />
           Logout

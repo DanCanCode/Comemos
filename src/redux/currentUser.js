@@ -3,6 +3,7 @@ import axios from "axios";
 // ACTION TYPE
 const SET_CURRENT_USER = "SET_CURRENT_USER";
 const ADD_USER = "ADD_USER";
+const LOGOUT_USER = "LOGOUT_USER";
 
 // ACTION CREATORS
 const setCurrentUser = (user) => {
@@ -15,6 +16,13 @@ const setCurrentUser = (user) => {
 const addUser = (user) => {
   return {
     type: ADD_USER,
+    user,
+  };
+};
+
+const logout = (user) => {
+  return {
+    type: LOGOUT_USER,
     user,
   };
 };
@@ -40,12 +48,20 @@ export const createUser = (user) => {
   };
 };
 
+export const logoutUser = () => {
+  return (dispatch) => {
+    dispatch(logout({}));
+  };
+};
+
 // REDUCER
 export default function currentUserReducer(state = {}, action) {
   switch (action.type) {
     case SET_CURRENT_USER:
       return action.user;
     case ADD_USER:
+      return action.user;
+    case LOGOUT_USER:
       return action.user;
     default:
       return state;
