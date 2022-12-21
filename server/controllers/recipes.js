@@ -26,9 +26,10 @@ const getSingleRecipe = async (req, res, next) => {
 
 const updateRecipe = async (req, res, next) => {
   try {
-    const singleRecipe = await Recipe.findByIdAndUpdate(req.params.id, {
-      image: req.body.image,
-    });
+    const singleRecipe = await Recipe.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
     res.json(singleRecipe);
   } catch (error) {
     next(error);
@@ -51,9 +52,19 @@ const createRecipe = async (req, res, next) => {
   }
 };
 
+const deleteRecipe = async (req, res, next) => {
+  try {
+    const removedRecipe = await Recipe.deleteOne({ _id: req.params.id });
+    res.json(removedRecipe);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getRecipes,
   getSingleRecipe,
   updateRecipe,
   createRecipe,
+  deleteRecipe,
 };

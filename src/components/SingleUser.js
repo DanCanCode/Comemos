@@ -22,19 +22,6 @@ const SingleUser = () => {
     dispatch(fetchSingleUser(userId));
   }, []);
 
-  useEffect(() => {
-    window.addEventListener("DOMContentLoaded", () => {
-      const tabs = document.querySelectorAll('[role="tab"]');
-      const tabList = document.querySelector('[role="tablist"]');
-      console.log(tabs);
-
-      // Add a click event handler to each tab
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", changeTabs);
-      });
-    });
-  }, []);
-
   const toggleMenu = () => {
     const menu = document.getElementById("menu");
     if (menu.classList.contains("hidden")) {

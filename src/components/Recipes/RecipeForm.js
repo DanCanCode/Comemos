@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, uuseEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createRecipe } from "../../redux/recipes";
+import { createRecipe, updatedRecipe } from "../../redux/recipes";
 import FileBase from "react-file-base64";
-// import { updatedUser } from "../../redux/users";
 
-const RecipeForm = () => {
+const RecipeForm = (props) => {
   const currentUser = useSelector((state) => state.currentUser.user);
   const [recipeData, setRecipeData] = useState({
     title: "",
@@ -16,22 +15,37 @@ const RecipeForm = () => {
   });
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const currentRecipe = props.currentRecipe;
+    if (currentRecipe) {
+      setRecipeData({
+        ...recipeData,
+        title: currentRecipe.title,
+        mealType: currentRecipe.mealType,
+        image: currentRecipe.image,
+        ingredients: currentRecipe.ingredients,
+        instructions: currentRecipe.instructions,
+      });
+    }
+  }, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createRecipe(recipeData));
-    // dispatch(updatedUser(currentUser));
-    setRecipeData({
-      ...recipeData,
-      title: "",
-      mealType: "",
-      image: "",
-      ingredients: [],
-      instructions: "",
-      creator: currentUser._id,
-    });
-  };
 
-  console.log(recipeData);
+    if (props.currentRecipe) {
+      dispatch(updatedRecipe({ id: props.currentRecipe._id, recipeData }));
+    } else {
+      dispatch(createRecipe(recipeData));
+      setRecipeData({
+        ...recipeData,
+        title: "",
+        mealType: "",
+        image: "",
+        ingredients: [],
+        instructions: "",
+      });
+    }
+  };
 
   return (
     <main>
@@ -65,7 +79,7 @@ const RecipeForm = () => {
             <select
               id="mealType"
               name="mealType"
-              defaultValue={"default"}
+              defaultValue={props?.currentRecipe?.mealType || "default"}
               onChange={(e) =>
                 setRecipeData({
                   ...recipeData,
