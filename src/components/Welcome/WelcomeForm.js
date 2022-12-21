@@ -53,7 +53,7 @@ const UserForm = () => {
 
       <section className="grid grid-cols-1 gap-3 container mx-auto max-w-[500px] bg-white/90 rounded-md -translate-y-1/2 -translate-x-1/2 absolute top-1/2 left-1/2  animate-fadein p-10 border-[1px] border-black/10">
         <img className="mx-auto w-16" src={"./public/images/logo.png"} />
-        <h1 className="text-center text-3xl font-confetti">
+        <h1 className="text-center text-2xl uppercase font-semibold">
           {location == "signup" ? "Signup" : "Login"}
         </h1>
         <form
@@ -65,7 +65,7 @@ const UserForm = () => {
             <div>
               <label
                 htmlFor="username"
-                className="block mb-2 text-sm text-black/40"
+                className="block mb-2 text-sm text-black/50"
               >
                 Username
               </label>
@@ -85,7 +85,7 @@ const UserForm = () => {
           )}
 
           <div>
-            <label htmlFor="email" className="block mb-2 text-sm text-black/40">
+            <label htmlFor="email" className="block mb-2 text-sm text-black/50">
               Email
             </label>
             <input
@@ -105,7 +105,7 @@ const UserForm = () => {
           <div>
             <label
               htmlFor="password"
-              className="block mb-2 text-sm text-black/40"
+              className="block mb-2 text-sm text-black/50"
             >
               Password
             </label>

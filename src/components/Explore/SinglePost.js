@@ -108,7 +108,7 @@ const SinglePost = () => {
     <div>
       <Sidebar />
 
-      <main className="relative top-0 left-[325px] w-[calc(100%-325px)] h-screen ">
+      <main className="relative top-0 left-[325px] w-[calc(100%-325px)] h-screen">
         <button onClick={() => navigate(-1)} className="m-10 mb-6  text-2xl">
           <FaArrowLeft className="inline text-xl" /> back
         </button>

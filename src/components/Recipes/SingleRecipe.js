@@ -126,7 +126,12 @@ const SingleRecipe = () => {
 
             {isPopUpOpen && editRecipe()}
 
-            <div className="h-14 w-14 overflow-hidden rounded-full">
+            <div
+              onClick={() => {
+                navigate(`/users/${singleRecipe?.creator?._id}`);
+              }}
+              className="h-14 w-14 overflow-hidden rounded-full cursor-pointer"
+            >
               <img
                 className="w-full h-full object-cover object-center"
                 src={singleRecipe?.creator?.profilePic}
@@ -134,7 +139,7 @@ const SingleRecipe = () => {
             </div>
           </div>
 
-          <div className="bg-black/20 p-8 shadow-inner uppercase max-h-72 overflow-y-auto rounded-sm">
+          <div className="bg-black/10 p-8 shadow-inner uppercase max-h-72 overflow-y-auto rounded-sm  font-mono">
             <h2 className="text-center text-xl font-medium pb-4">
               <span className="border-b border-black py-1">Ingredients</span>
             </h2>

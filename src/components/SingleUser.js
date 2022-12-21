@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { fetchSingleUser } from "../redux/singleUser";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaUtensils, FaRegImage } from "react-icons/fa";
 import Sidebar from "./Sidebar";
 import PostForm from "./Explore/PostForm";
 import RecipeForm from "./Recipes/RecipeForm";
@@ -195,7 +195,7 @@ const SingleUser = () => {
               }}
               className="TAB-LABEL p-2 mb-2 rounded-lg hover:bg-black/10 uppercase"
             >
-              Posts
+              <FaRegImage className="inline-block text-center" /> Posts
             </button>
 
             <button
@@ -204,7 +204,7 @@ const SingleUser = () => {
               }}
               className="TAB-LABEL p-2 mb-2 rounded-lg hover:bg-black/10 uppercase"
             >
-              Recipes
+              <FaUtensils className="inline-block text-center" /> Recipes
             </button>
           </div>
 
@@ -215,7 +215,7 @@ const SingleUser = () => {
                   return (
                     <div
                       onClick={() => {
-                        console.log("signle post page");
+                        navigate(`/posts/${post._id}`);
                       }}
                       key={post._id}
                       className="w-56 h-56 overflow-hidden rounded-md cursor-pointer hover:scale-90 hover:duration-300 transition duration-300 ease-in-out"

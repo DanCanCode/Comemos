@@ -53,13 +53,13 @@ const Explore = () => {
         <section className="m-10">
           <h1 className="border-b font-medium text-2xl mb-10">Latest Posts</h1>
 
-          <div className="flex flex-wrap justify-center gap-8 place-items-center">
+          <div className="flex flex-wrap justify-center gap-8">
             {posts
               ?.map((post) => {
                 return (
                   <div
                     key={post._id}
-                    className="border rounded-lg overflow-hidden shadow-md hover:scale-90 hover:duration-300 transition duration-300 ease-in-out"
+                    className="animate-slideDown border rounded-lg overflow-hidden shadow-md hover:scale-90 hover:duration-300 transition duration-300 ease-in-out"
                   >
                     <div className="w-96 h-96 overflow-hidden">
                       <img
