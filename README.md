@@ -9,10 +9,11 @@ Comemos is a social media application built with the MERN stack. This applicatio
 ## Features
 
 - User signup, login, and logout
+- Edit user data
 - View all posts / recipes
-- View single post / recipes
+- View single post / recipe
 - Create post / recipe
-- Edit post / pecipe
+- Edit single post / recipe data
 - Delete post / recipe
 - User data is secured using JSON web tokens saved in local storage
 
