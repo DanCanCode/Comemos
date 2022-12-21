@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
+  "proxy": "http://localhost:1337",
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development & nodemon server",
