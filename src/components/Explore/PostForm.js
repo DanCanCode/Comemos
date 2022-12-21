@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createPost } from "../../redux/posts";
+import { createPost, updatedPost } from "../../redux/posts";
 import FileBase from "react-file-base64";
-// import { updatedUser } from "../../redux/users";
 
-const PostForm = () => {
+const PostForm = (props) => {
   const currentUser = useSelector((state) => state.currentUser.user);
   const [postData, setPostData] = useState({
     title: "",
@@ -14,18 +13,33 @@ const PostForm = () => {
     image: "",
   });
   const dispatch = useDispatch();
+  useEffect(() => {
+    const currentPost = props.currentPost;
+    if (currentPost) {
+      setPostData({
+        ...postData,
+        title: currentPost.title,
+        description: currentPost.description,
+        tags: currentPost.tags,
+        image: currentPost.image,
+      });
+    }
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createPost(postData));
-    // dispatch(updatedUser(currentUser));
-    setPostData({
-      ...postData,
-      title: "",
-      description: "",
-      tags: "",
-      image: "",
-    });
+    if (props.currentPost) {
+      dispatch(updatedPost({ id: props.currentPost._id, postData }));
+    } else {
+      dispatch(createPost(postData));
+      setPostData({
+        ...postData,
+        title: "",
+        description: "",
+        tags: "",
+        image: "",
+      });
+    }
   };
 
   console.log(postData);
