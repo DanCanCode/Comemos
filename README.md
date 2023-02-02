@@ -4,7 +4,7 @@
 
 ## Description
 
-Comemos is a social media platform where users can share food, recipes, and connect with others. Employed MERN Stack to construct front-end components connected to back-end to access MongoDB database with Mongoose and API routes. This application has full CRUD functionality and user authentication via JSON web tokens and bcrypt.
+Comemos is a social media platform that enables users to share mouth-watering recipes, connecting with like-minded foodies, and discovering new dishes. Built using the MERN Stack, the platform features a seamless connection between its front-end components and back-end, powered by React and MongoDB. With full CRUD functionality and user authentication, Comemos delivers a comprehensive and secure experience for food enthusiasts.
 
 ## Features
 
